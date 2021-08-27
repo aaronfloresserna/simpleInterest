@@ -16,7 +16,8 @@ public class ResponseModel {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
+	private Long id_request;
 	private Integer payment_number;
 	private Double amount;
 	private Date payment_date;

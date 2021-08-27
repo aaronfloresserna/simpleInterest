@@ -16,9 +16,15 @@ public class RequestModel {
 	
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
+	
+	@Column(nullable = false)
     private Double amount;
+	
+	@Column(nullable = false)
     private Integer terms;
+	
+	@Column(nullable = false)
     private Double rate;
 
 	public RequestModel(double amount, int terms, double rate) {
@@ -26,28 +32,32 @@ public class RequestModel {
 		this.terms = terms;
 		this.rate = rate;
 	}
+	
+	public Long getId() {
+		return this.id;
+	}
 
-	public double getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
-	public int getTerms() {
+	public Integer getTerms() {
 		return terms;
 	}
 
-	public void setTerms(int terms) {
+	public void setTerms(Integer terms) {
 		this.terms = terms;
 	}
 
-	public double getRate() {
+	public Double getRate() {
 		return rate;
 	}
 
-	public void setRate(double rate) {
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
 
