@@ -10,19 +10,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "simpleinterestrequest")
+@SequenceGenerator(name = "seq", initialValue = 1, allocationSize = 100)
 public class RequestModel {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
 	private Long id;
-	
-	@Column(nullable = false)
     private Double amount;
-	
-	@Column(nullable = false)
     private Integer terms;
-	
-	@Column(nullable = false)
     private Double rate;
 
 
