@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.api.SimpleInterest.dto.SimpleInterestDTO;
 import com.api.SimpleInterest.models.RequestModel;
-import com.api.SimpleInterest.models.ResponseModel;
 
 import java.util.*;
 
