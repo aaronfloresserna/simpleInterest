@@ -6,8 +6,6 @@
 
 package com.api.SimpleInterest.models;
 
-import java.util.*;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,20 +13,33 @@ import javax.persistence.*;
 public class ResponseModel {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-	private Long id_request;
+
 	private Integer payment_number;
+
 	private Double amount;
-	private Date payment_date;
+
+	private String payment_date;
+
+	@ManyToOne(targetEntity = RequestModel.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "requestId", referencedColumnName = "id")
+	private RequestModel request;
 	
-	
-	
-	public ResponseModel(Integer payment_number, Double amount, Date payment_date) {
+	public ResponseModel(Integer payment_number, Double amount, String payment_date, RequestModel requestModel) {
 		super();
 		this.payment_number = payment_number;
 		this.amount = amount;
 		this.payment_date = payment_date;
+		this.request = requestModel;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public int getPayment_number() {
@@ -47,13 +58,26 @@ public class ResponseModel {
 		this.amount = amount;
 	}
 	
-	public Date getPayment_date() {
+	public String getPayment_date() {
 		return payment_date;
 	}
 	
-	public void setPayment_date(Date payment_date) {
+	public void setPayment_date(String payment_date) {
 		this.payment_date = payment_date;
 	}
-	
+
+	public RequestModel getRequest() {
+		return request;
+	}
+
+	public void setRequest(RequestModel request) {
+		this.request = request;
+	}
+
+	@Override
+	public String toString() {
+		return "ResponseModel [amount=" + amount + ", id=" + id + ", payment_date=" + payment_date + ", payment_number="
+				+ payment_number + ", request=" + request + "]";
+	}
 	
 }

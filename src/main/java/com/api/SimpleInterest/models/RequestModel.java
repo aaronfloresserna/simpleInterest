@@ -6,8 +6,6 @@
 
 package com.api.SimpleInterest.models;
 
-import java.util.Objects;
-
 import javax.persistence.*;
 
 @Entity
@@ -15,7 +13,7 @@ import javax.persistence.*;
 public class RequestModel {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	
 	@Column(nullable = false)
@@ -26,6 +24,7 @@ public class RequestModel {
 	
 	@Column(nullable = false)
     private Double rate;
+
 
 	public RequestModel(double amount, int terms, double rate) {
 		this.amount = amount;
@@ -62,27 +61,8 @@ public class RequestModel {
 	}
 
 	@Override
-	public int hashCode() {
-		return Objects.hash(amount, rate, terms);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		RequestModel other = (RequestModel) obj;
-		return Double.doubleToLongBits(amount) == Double.doubleToLongBits(other.amount)
-				&& Double.doubleToLongBits(rate) == Double.doubleToLongBits(other.rate) && terms == other.terms;
-	}
-
-	@Override
 	public String toString() {
-		return "SimpleInterestRequest [amount=" + amount + ", terms=" + terms + ", rate=" + rate + "]";
+		return "RequestModel [amount=" + amount + ", id=" + id + ", rate=" + rate + ", terms=" + terms + "]";
 	}
 
-	
 }
