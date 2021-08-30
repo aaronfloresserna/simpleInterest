@@ -47,6 +47,13 @@ $ mvn spring-boot:run
 
 ![Swagger UI](/src/main/resources/images/swagger.PNG "Swagger UI")
 
-![Swagger UI](/src/main/resources/images/simpleInterest.png "Simple Interest")
+![Swagger UI](/src/main/resources/images/simpleInterest.PNG "Simple Interest")
 
+* [ReturnsCalculator](http://localhost:8080/actuator/health).
+
+![Health ep](/src/main/resources/images/health.PNG "Simple Interest")
+
+* [ReturnsCalculator](http://localhost:8080/h2).
+
+![H2 db](/src/main/resources/images/h2.PNG "Simple Interest")
 
