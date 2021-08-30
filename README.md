@@ -1,7 +1,7 @@
 # Simple Interest Calculator 
-Aplazo wants to build a Returns calculator. the returns calculator will allow the user to calculate the returns for the following kind of deals
+Aplazo simple interest project. The project calculator will allow the user to calculate and generates the list of payments of the simple interest of a credit that must be paid in n terms and in weekly form.
 
-Simple Interest, return
+Simple Interest 
 
 ```
    I = P * r * t
@@ -45,5 +45,8 @@ $ mvn spring-boot:run
 
 * [ReturnsCalculator](http://localhost:8080/swagger-ui.html).
 
-![Swagger UI](/src/main/resources/images/swagger_ui.png "Swagger UI")
-![Swagger UI](/src/main/resources/images/simple_interest.png "Simple Interest")
+![Swagger UI](/src/main/resources/images/swagger.PNG "Swagger UI")
+
+![Swagger UI](/src/main/resources/images/simpleInterest.png "Simple Interest")
+
+
