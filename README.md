@@ -8,7 +8,7 @@ Simple Interest
 ```
 
 * P = the principal amount (the initial deposit)
-* r = the monthly interest rate (percentage % i.e if rate of interest is 5% then input will be 5)
+* r = the monthly interest rate (percentage % i.e if rate of interest is 5% then input will be 5.0)
 * t = the number of months the money is borrowed for
 
 The returns should show weekly payments, t is multiplied by 4 (number of weeks per month), i.e 
@@ -49,11 +49,57 @@ $ mvn spring-boot:run
 
 ![Swagger UI](/src/main/resources/images/simpleInterest.PNG "Simple Interest")
 
-HTTP STATUS             RESPONSE
+REQUEST                HTTP STATUS             RESPONSE
 
-200                      
+{                      200 
+  "amount": 10000,
+  "rate": 3.86,
+  "terms": 1
+}                                      [
+                                             {
+                                                "payment_number": 1,
+                                                "amount": 2596.5,
+                                                "payment_date": "2021-08-30"
+                                             },
+                                             {
+                                                "payment_number": 2,
+                                                "amount": 2596.5,
+                                                "payment_date": "2021-09-06"
+                                             },
+                                             {
+                                                "payment_number": 3,
+                                                "amount": 2596.5,
+                                                "payment_date": "2021-09-13"
+                                             },
+                                             {
+                                                "payment_number": 4,
+                                                "amount": 2596.5,
+                                                "payment_date": "2021-09-20"
+                                             }
+                                          ]
 
-400
+
+{                      400 
+  "rate": 3.86,
+  "terms": 1
+}                                         {
+                                             "message": "amount property required",
+                                             "status": 400,
+                                             "httpStatus": "BAD_REQUEST",
+                                             "timeStamp": "2021-08-30T19:37:37.5326703-04:00"
+                                          }    
+
+{                      400 
+  "amount": 10000,
+  "rate": 3.86,
+  "terms": -1
+}                             
+                                          {
+                                             "message": "terms has to be grater than 0 or not null",
+                                             "status": 400,
+                                             "httpStatus": "BAD_REQUEST",
+                                             "timeStamp": "2021-08-30T19:39:10.1276785-04:00"
+                                          }                             
 
 ### For Health endpoint, click on the link below
 
