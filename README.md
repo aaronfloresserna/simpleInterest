@@ -49,15 +49,24 @@ $ mvn spring-boot:run
 
 ![Swagger UI](/src/main/resources/images/simpleInterest.PNG "Simple Interest")
 
+HTTP STATUS             RESPONSE
+
+200                      
+
+400
+
 ### For Health endpoint, click on the link below
 
 * [Health Endpoint](http://localhost:8080/actuator/health).
 
-![Health ep](/src/main/resources/images/health.PNG "Simple Interest")
+![Health ep](/src/main/resources/images/health.PNG "Simple Interest health")
 
 ### For h2 Data Base, Please click on the link below
 
 * [H2 Data Base](http://localhost:8080/h2).
 
-![H2 db](/src/main/resources/images/h2.PNG "Simple Interest")
+![H2 db](/src/main/resources/images/h2.PNG "Simple Interest h2 data base")
 
+### JUnit test coverage
+
+![H2 db](/src/main/resources/images/testCoverage.PNG "Simple Interest test coverage")
