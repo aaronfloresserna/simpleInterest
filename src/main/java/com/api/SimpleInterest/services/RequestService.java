@@ -6,10 +6,10 @@
 
 package com.api.SimpleInterest.services;
 
-
 import java.util.*;
 import java.util.stream.Collectors;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,6 +25,8 @@ public class RequestService implements IRequestService{
 	
 	@Autowired
 	IResponseRepository responseRepository;
+
+	private LocalDate date = LocalDate.now(ZoneId.of("America/Mexico_City"));
 	
 	@Override
 	public List<SimpleInterestDTO> saveRequest(RequestModel requestModel) {
@@ -33,9 +35,7 @@ public class RequestService implements IRequestService{
 		validate(requestModel);
 
 		//Compute the simple interest of any pay weekly
-		List<ResponseModel> responses =  computeInterest(requestModel);
-
-		saveSimpleInteres(responses);
+		computeInterest(requestModel);
 		
 		return responseRepository
 				.findAllByRequest(requestModel)
@@ -44,38 +44,39 @@ public class RequestService implements IRequestService{
 				.collect(Collectors.toList());
 	}
 
+	//Validation of the request 
 	private void validate(RequestModel requestModel) {
-		if(requestModel.getAmount() <= 0) throw new ApiRequestException("amount should be grater than 0");
-		if(requestModel.getRate() <= 0) throw new ApiRequestException("rate should be grater than 0");
-		if(requestModel.getTerms() <= 0) throw new ApiRequestException("terms should be grater than 0");
+		if(requestModel.getAmount() == null ) throw new ApiRequestException("amount property required");
+		if(requestModel.getAmount() <= 0 ) throw new ApiRequestException("amount has to be grater than 0 or not null");
+
+		if(requestModel.getRate() == null ) throw new ApiRequestException("rate property required");
+		if(requestModel.getRate() <= 0 ) throw new ApiRequestException("rate has to be grater than 0 or not null");
+
+		if(requestModel.getTerms() == null ) throw new ApiRequestException("terms property required");
+		if(requestModel.getTerms() <= 0 ) throw new ApiRequestException("terms has to be grater than 0 or not null");
 	}
 
 	//Method to compute simple interest 
-	private List<ResponseModel> computeInterest(RequestModel requestModel){
-		
-		List<ResponseModel> res = new ArrayList<>();
-		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar calendar = Calendar.getInstance();
-		calendar.setTime(new Date());
+	private void computeInterest(RequestModel requestModel){
 
 		Double interest = requestModel.getAmount() * (requestModel.getRate() / 100) * requestModel.getTerms();
 		
 		//Assuming that the input terms and rate are in monttly
 		Double amountWeekly = (interest + requestModel.getAmount()) / (requestModel.getTerms() * 4); // monthly
 
-		for(int paymentNumber = 1; paymentNumber <= requestModel.getTerms(); paymentNumber++){
+		int countWeek = 0;
+
+		for(int paymentNumber = 1; paymentNumber <= requestModel.getTerms() * 4; paymentNumber++){
 			
-			res.add(new ResponseModel(
-				paymentNumber,
-				 amountWeekly, 
-				 simpleDateFormat.format(calendar.getTime()), requestModel));
-			
-			//Add 7 days in each payment week
-			calendar.add(Calendar.DATE, 7);
-			
+			responseRepository.save(
+				new ResponseModel(
+					paymentNumber,
+					amountWeekly, 
+					date.plusWeeks(countWeek++),
+					requestModel
+				)
+			);
 		}
-		
-		return res;
 	}
 
 	//Convert the responseModel to simpleInterestDTO
@@ -89,12 +90,5 @@ public class RequestService implements IRequestService{
 			);
 
 		return simpleInterestDTO;
-	}
-
-	//Save every weekly payment 
-	private void saveSimpleInteres(List<ResponseModel> responses) { 
-		for(ResponseModel res : responses){
-			responseRepository.save(res);
-		}
 	}
 }

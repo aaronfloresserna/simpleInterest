@@ -6,7 +6,7 @@
 
 package com.api.SimpleInterest.exceptions;
 
-public class ApiRequestException extends  RuntimeException{
+public class ApiRequestException extends RuntimeException{
 
     public ApiRequestException(String message) {
         super(message);

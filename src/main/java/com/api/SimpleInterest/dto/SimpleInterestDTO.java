@@ -6,12 +6,14 @@
 
 package com.api.SimpleInterest.dto;
 
+import java.time.LocalDate;
+
 public class SimpleInterestDTO {
     private Integer payment_number;
     private Double amount;
-    private String payment_date;
+    private LocalDate payment_date;
     
-    public SimpleInterestDTO(Integer payment_number, Double amount, String payment_date) {
+    public SimpleInterestDTO(Integer payment_number, Double amount, LocalDate payment_date) {
         this.payment_number = payment_number;
         this.amount = amount;
         this.payment_date = payment_date;
@@ -33,11 +35,11 @@ public class SimpleInterestDTO {
         this.amount = amount;
     }
 
-    public String getPayment_date() {
+    public LocalDate getPayment_date() {
         return payment_date;
     }
 
-    public void setPayment_date(String payment_date) {
+    public void setPayment_date(LocalDate payment_date) {
         this.payment_date = payment_date;
     }
 
@@ -47,5 +49,4 @@ public class SimpleInterestDTO {
                 + payment_number + "]";
     }
 
-    
 }
