@@ -6,6 +6,8 @@
 
 package com.api.SimpleInterest.models;
 
+import java.time.LocalDate;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,18 +17,15 @@ public class ResponseModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
-
 	private Integer payment_number;
-
 	private Double amount;
-
-	private String payment_date;
+	private LocalDate payment_date;
 
 	@ManyToOne(targetEntity = RequestModel.class, cascade = CascadeType.ALL)
 	@JoinColumn(name = "requestId", referencedColumnName = "id")
 	private RequestModel request;
 	
-	public ResponseModel(Integer payment_number, Double amount, String payment_date, RequestModel requestModel) {
+	public ResponseModel(Integer payment_number, Double amount, LocalDate payment_date, RequestModel requestModel) {
 		super();
 		this.payment_number = payment_number;
 		this.amount = amount;
@@ -42,11 +41,11 @@ public class ResponseModel {
 		this.id = id;
 	}
 
-	public int getPayment_number() {
+	public Integer getPayment_number() {
 		return payment_number;
 	}
 	
-	public void setPayment_number(int payment_number) {
+	public void setPayment_number(Integer payment_number) {
 		this.payment_number = payment_number;
 	}
 	
@@ -58,11 +57,11 @@ public class ResponseModel {
 		this.amount = amount;
 	}
 	
-	public String getPayment_date() {
+	public LocalDate getPayment_date() {
 		return payment_date;
 	}
 	
-	public void setPayment_date(String payment_date) {
+	public void setPayment_date(LocalDate payment_date) {
 		this.payment_date = payment_date;
 	}
 
