@@ -41,19 +41,23 @@ $ mvn spring-boot:run
 
 ```
 
-### For Returns Calculator Rest API, Please click on the link below,
+### For Simple Interest calculator Rest API, Please click on the link below
 
-* [ReturnsCalculator](http://localhost:8080/swagger-ui.html).
+* [Simple Interest calculator](http://localhost:8080/swagger-ui.html).
 
 ![Swagger UI](/src/main/resources/images/swagger.PNG "Swagger UI")
 
 ![Swagger UI](/src/main/resources/images/simpleInterest.PNG "Simple Interest")
 
-* [ReturnsCalculator](http://localhost:8080/actuator/health).
+### For Health endpoint, click on the link below
+
+* [Health Endpoint](http://localhost:8080/actuator/health).
 
 ![Health ep](/src/main/resources/images/health.PNG "Simple Interest")
 
-* [ReturnsCalculator](http://localhost:8080/h2).
+### For h2 Data Base, Please click on the link below
+
+* [H2 Data Base](http://localhost:8080/h2).
 
 ![H2 db](/src/main/resources/images/h2.PNG "Simple Interest")
 
